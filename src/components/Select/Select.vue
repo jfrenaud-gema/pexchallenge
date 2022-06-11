@@ -1,5 +1,5 @@
 <template>
-  <Listbox as="div" v-model="selectedElement">
+  <Listbox as="div" v-model="selectedElement" @update:model-value="onChange">
     <div class="mt-1 relative">
       <ListboxButton
         class="bg-white relative w-full border border-gray-300 rounded-md shadow-sm pl-3 pr-10 py-2 text-left cursor-default focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
@@ -93,10 +93,18 @@ export default defineComponent({
     },
   },
 
+  emits: ["onChange"],
+
   data() {
     return {
       selectedElement: this.selected as SelectElement,
     };
+  },
+
+  methods: {
+    onChange() {
+      this.$emit("onChange", this.selectedElement);
+    },
   },
 });
 </script>

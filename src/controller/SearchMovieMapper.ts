@@ -3,7 +3,7 @@ import {
   SearchDataOption,
   SortData,
   SortDataBy,
-} from "@/components/SearchBar";
+} from "../components/SearchBar/SearchBar.types";
 import {
   Filter,
   FilterBy,
@@ -11,7 +11,7 @@ import {
   Sort,
   SortBy,
   SortOrder,
-} from "@/model";
+} from "../model";
 
 const searchMovieMapper = {
   toSearchOption: (searchDataOption: SearchDataOption): SearchOption => {

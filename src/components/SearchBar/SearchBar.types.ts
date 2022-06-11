@@ -1,5 +1,3 @@
-import { Genre } from "@/model";
-
 export enum SearchDataOption {
   ALL,
   ACTORS,
@@ -38,5 +36,5 @@ export interface SearchBarAction {
 }
 
 export interface SearchBarProps extends SearchBarAction {
-  genres: Genre[];
+  genres: GenreData[];
 }

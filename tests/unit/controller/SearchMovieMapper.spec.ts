@@ -1,4 +1,7 @@
-import { SearchDataOption, SortDataBy } from "@/components/SearchBar";
+import {
+  SearchDataOption,
+  SortDataBy,
+} from "@/components/SearchBar/SearchBar.types";
 import searchMovieMapper from "@/controller/SearchMovieMapper";
 import { FilterBy, SearchOption, SortBy, SortOrder } from "@/model";
 

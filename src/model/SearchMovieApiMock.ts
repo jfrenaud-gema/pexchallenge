@@ -64,7 +64,7 @@ const searchMovieApiMock = {
       ...movie,
     }));
 
-    if (request.filters) {
+    if (request.filters?.length) {
       response = response.slice(0, 1);
     }
 
