@@ -1,4 +1,4 @@
 export interface SelectElement {
-  key: number;
+  key: any;
   value: string;
 }

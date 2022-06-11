@@ -83,7 +83,6 @@ export default defineComponent({
   },
 
   props: {
-    msg: String,
     elements: {
       type: Object as PropType<SelectElement[]>,
       required: true,
@@ -96,7 +95,7 @@ export default defineComponent({
 
   data() {
     return {
-      selectedElement: this.selected,
+      selectedElement: this.selected as SelectElement,
     };
   },
 });
