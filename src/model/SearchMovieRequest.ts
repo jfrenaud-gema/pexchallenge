@@ -19,9 +19,6 @@ export interface Filter {
 
 export enum SortBy {
   TITLE = "TITLE",
-  GENRE = "GENRE",
-  ACTOR = "ACTOR",
-  SERIE = "SERIE",
   RELEASE_DATE = "RELEASE_DATE",
 }
 

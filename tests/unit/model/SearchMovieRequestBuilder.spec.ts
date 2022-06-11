@@ -257,7 +257,7 @@ describe("SearchMovieRequestBuilder", () => {
       builder
         .withSearchTerm(searchTerm)
         .withSearchOption(SearchOption.ACTORS)
-        .withFilter({ by: FilterBy.GENRE, value: "COMEDY" })
+        .withFilter({ by: FilterBy.GENRE, value: "Comedy" })
         .withFilter({ by: FilterBy.SERIE, value: false })
         .withSort({ by: SortBy.RELEASE_DATE, order: SortOrder.DESC });
 
@@ -267,7 +267,7 @@ describe("SearchMovieRequestBuilder", () => {
       expect(request.searchOption).toBe("ACTORS");
       expect(request.filters?.length).toBe(2);
       expect(request.filters?.[0].by).toBe("GENRE");
-      expect(request.filters?.[0].value).toBe("COMEDY");
+      expect(request.filters?.[0].value).toBe("Comedy");
       expect(request.filters?.[1].by).toBe("SERIE");
       expect(request.filters?.[1].value).toBe(false);
       expect(request.sort?.by).toBe("RELEASE_DATE");
