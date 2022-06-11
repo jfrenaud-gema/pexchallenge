@@ -8,9 +8,12 @@
     "test:unit": "vue-cli-service test:unit",
     "lint": "vue-cli-service lint",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "postinstall": "rm -rf ./node_modules/@types/react"
   },
   "dependencies": {
+    "@headlessui/vue": "^1.6.4",
+    "@heroicons/vue": "^1.0.6",
     "core-js": "^3.8.3",
     "vue": "^3.2.13",
     "vue-class-component": "^8.0.0-0"
@@ -26,6 +29,7 @@
     "@storybook/manager-webpack5": "^6.5.8",
     "@storybook/testing-library": "^0.0.12",
     "@storybook/vue3": "^6.5.8",
+    "@tailwindcss/forms": "^0.5.2",
     "@types/jest": "^27.0.1",
     "@typescript-eslint/eslint-plugin": "^5.4.0",
     "@typescript-eslint/parser": "^5.4.0",
