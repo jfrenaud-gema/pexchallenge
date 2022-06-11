@@ -16,28 +16,32 @@ describe("SearchMovieRequestBuilder", () => {
 
   describe("search term", () => {
     describe("search terms only", () => {
-      it("should have search term", () => {
+      beforeEach(() => {
         builder.withSearchTerm(searchTerm);
+      });
 
+      it("should have search term", () => {
         request = builder.build();
 
         expect(request.searchTerm).toBe(searchTerm);
       });
 
       it("should have default search option", () => {
-        builder.withSearchTerm(searchTerm);
-
         request = builder.build();
 
         expect(request.searchOption).toBe("ALL");
       });
 
       it("should not have filters", () => {
-        builder.withSearchTerm(searchTerm);
-
         request = builder.build();
 
         expect(request.filters).toBeUndefined();
+      });
+
+      it("should not have sort", () => {
+        request = builder.build();
+
+        expect(request.sort).toBeUndefined();
       });
     });
 
@@ -59,12 +63,20 @@ describe("SearchMovieRequestBuilder", () => {
 
         expect(request.filters).toBeUndefined();
       });
+
+      it("should not have sort", () => {
+        request = builder.build();
+
+        expect(request.sort).toBeUndefined();
+      });
     });
 
     describe("search actors only", () => {
-      it("should have the actors search option", () => {
+      beforeEach(() => {
         builder.withSearchOption(SearchOption.ACTORS);
+      });
 
+      it("should have the actors search option", () => {
         request = builder.build();
 
         expect(request.searchOption).toBe("ACTORS");
@@ -191,7 +203,7 @@ describe("SearchMovieRequestBuilder", () => {
       });
     });
 
-    it("should not add serie twice", () => {
+    it("should not add different serie", () => {
       builder
         .withFilter({
           by: FilterBy.SERIE,
