@@ -2,6 +2,8 @@ import {
   FilterBy,
   SearchMovieRequest,
   SearchOption,
+  SortBy,
+  SortOrder,
 } from "@/model/SearchMovieRequest";
 import { SearchMovieRequestBuilder } from "@/model/SearchMovieRequestBuilder";
 
@@ -221,6 +223,55 @@ describe("SearchMovieRequestBuilder", () => {
         by: "SERIE",
         value: false,
       });
+    });
+  });
+
+  describe("sort", () => {
+    it("should sort ascending", () => {
+      builder.withSort({
+        by: SortBy.TITLE,
+        order: SortOrder.ASC,
+      });
+
+      request = builder.build();
+
+      expect(request.sort?.by).toBe("TITLE");
+      expect(request.sort?.order).toBe("ASC");
+    });
+
+    it("should sort descending", () => {
+      builder.withSort({
+        by: SortBy.TITLE,
+        order: SortOrder.DESC,
+      });
+
+      request = builder.build();
+
+      expect(request.sort?.by).toBe("TITLE");
+      expect(request.sort?.order).toBe("DESC");
+    });
+  });
+
+  describe("build", () => {
+    it("should construct a full request", () => {
+      builder
+        .withSearchTerm(searchTerm)
+        .withSearchOption(SearchOption.ACTORS)
+        .withFilter({ by: FilterBy.GENRE, value: "COMEDY" })
+        .withFilter({ by: FilterBy.SERIE, value: false })
+        .withSort({ by: SortBy.RELEASE_DATE, order: SortOrder.DESC });
+
+      request = builder.build();
+
+      expect(request.searchTerm).toBe(searchTerm);
+      expect(request.searchOption).toBe("ACTORS");
+      expect(request.filters?.length).toBe(2);
+      expect(request.filters?.[0].by).toBe("GENRE");
+      expect(request.filters?.[0].value).toBe("COMEDY");
+      expect(request.filters?.[1].by).toBe("SERIE");
+      expect(request.filters?.[1].value).toBe(false);
+      expect(request.sort?.by).toBe("RELEASE_DATE");
+      expect(request.sort?.order).toBe("DESC");
     });
   });
 });

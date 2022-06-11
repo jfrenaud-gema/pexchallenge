@@ -1,4 +1,9 @@
-import { Filter, SearchMovieRequest, SearchOption } from "./SearchMovieRequest";
+import {
+  Filter,
+  SearchMovieRequest,
+  SearchOption,
+  Sort,
+} from "./SearchMovieRequest";
 
 type CompareFilterFunction = (filterA: Filter, filterB: Filter) => boolean;
 
@@ -50,6 +55,11 @@ export class SearchMovieRequestBuilder {
       this.request.filters.push(filter);
     }
 
+    return this;
+  }
+
+  withSort(sort: Sort): SearchMovieRequestBuilder {
+    this.request.sort = sort;
     return this;
   }
 
