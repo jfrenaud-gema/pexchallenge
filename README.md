@@ -33,7 +33,7 @@ Then I created a request builder (`SearchMovieRequestBuilder.ts`) to construct t
 
 Next up, I created the api definition (`SearchMovieApi.ts`) and the mock implementation (`SearchMovieApiMock.ts`). 
 
-The mocked response is exactly the one given in the challenge. Since the response only have two movies, I decided to return only the first movie when a filter was provided and reverse the movies order when the sort order was descending. I then document that behaviour in `tests/unit/SearchMovieApiMock.spec.ts`.
+The mocked response is exactly the one given in the challenge. Since the response only have two movies, I decided to return only the first movie when a filter was provided and reverse the movies order when the sort order was descending. I then documented that behaviour in `tests/unit/SearchMovieApiMock.spec.ts`.
 
 ### View
 
@@ -55,7 +55,7 @@ The last part was to connect the View and the Model together.
 
 I created the mapper (`SearchMovieMapper.ts`) to assemble view-model from model and model from view-model. The tests can be found in `tests/controller/SearchMovieMapper.spec.ts`
 
-Then I created the search movie component (`SearchMovie.vue`) that connects with the model via the api to get the genres and to search for movies. The, the controller assembles the view-model with the mappers and sends the data to the props of the higher-level components of the view (SearchBar and MovieCardRow).
+Then I created the search movie component (`SearchMovie.vue`) that connects with the model via the api to get the genres and to search for movies. Then, the controller assembles the view-model with the mappers and sends the data to the props of the higher-level components of the view (SearchBar and MovieCardRow).
 
 The interaction tests can be found in `SearchMovie.stories.tsx`.
 
