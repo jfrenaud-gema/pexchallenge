@@ -28,11 +28,3 @@ export interface SearchData {
   sort: SortData;
   filter?: FilterData;
 }
-
-export interface SearchBarAction {
-  onSearch: (search: SearchData) => void;
-}
-
-export interface SearchBarProps extends SearchBarAction {
-  genres: GenreData[];
-}
