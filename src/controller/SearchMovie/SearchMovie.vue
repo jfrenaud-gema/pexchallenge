@@ -1,6 +1,7 @@
 <template>
-  <div class="container mx-auto">
+  <div class="container mx-auto flex flex-col gap-4">
     <SearchBar :genres="genres" @on-search="onSearch" />
+    <MovieCardRow :movies="movies" />
   </div>
 </template>
 
@@ -14,18 +15,21 @@ import {
 } from "../../components/SearchBar/SearchBar.types";
 import searchMovieMapper from "../SearchMovieMapper";
 import searchMovieApi from "../../model/SearchMovieApi";
+import { MovieCardData } from "../../components/MovieCard/MovieCard.types";
+import MovieCardRow from "../../components/MovieCardRow/MovieCardRow.vue";
 
 export default defineComponent({
   name: "PexSearchMovie",
 
   components: {
     SearchBar,
+    MovieCardRow,
   },
 
   data() {
-    const genres: GenreData[] = [];
     return {
-      genres,
+      genres: [] as GenreData[],
+      movies: [] as MovieCardData[],
     };
   },
 
@@ -48,7 +52,7 @@ export default defineComponent({
 
       const response = await searchMovieApi.searchMovies(request);
 
-      console.log(response);
+      this.movies = searchMovieMapper.toMovieCards(response);
     },
   },
 });

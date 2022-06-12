@@ -1,3 +1,4 @@
+import { MovieCardData } from "@/components/MovieCard/MovieCard.types";
 import {
   FilterData,
   GenreData,
@@ -9,6 +10,7 @@ import {
   Filter,
   FilterBy,
   GenreResponse,
+  Movie,
   SearchOption,
   Sort,
   SortBy,
@@ -53,6 +55,16 @@ const searchMovieMapper = {
     }
 
     return filters;
+  },
+
+  toMovieCards: (movies: Movie[]): MovieCardData[] => {
+    return movies.map((movie) => ({
+      title: movie.title,
+      genres: movie.genre.map((genre) => genre.title),
+      actors: movie.actors.map((actor) => actor.name),
+      releaseDate: new Date(movie.release_date).toLocaleDateString(),
+      serie: movie.is_series,
+    }));
   },
 };
 

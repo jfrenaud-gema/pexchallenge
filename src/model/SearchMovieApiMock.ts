@@ -1,4 +1,4 @@
-import { SearchMovieRequest } from "./SearchMovieRequest";
+import { SearchMovieRequest, SortOrder } from "./SearchMovieRequest";
 import { GenreResponse, SearchMovieResponse } from "./SearchMovieResponse";
 
 const allMovies: SearchMovieResponse = [
@@ -71,7 +71,7 @@ const searchMovieApiMock = {
       response = response.slice(0, 1);
     }
 
-    if (request.sort) {
+    if (request.sort?.order === SortOrder.DESC) {
       response.reverse();
     }
 
