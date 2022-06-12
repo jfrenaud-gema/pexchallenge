@@ -1,6 +1,7 @@
 <template>
   <div
     class="grid grid-flow-row grid-cols-1 gap-4 md:gap-4 md:grid-flow-col md:grid-cols-3"
+    data-testid="movieCardRow"
   >
     <div v-for="movie in movies" :key="movie.title">
       <MovieCard :movie="movie" />
