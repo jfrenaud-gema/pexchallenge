@@ -52,7 +52,8 @@ export default defineComponent({
   },
 
   methods: {
-    onSortByChanged() {
+    onSortByChanged(sortBy: SelectElement) {
+      this.sortBySelected = sortBy;
       this.$emit("onSortByChanged", this.sortBySelected);
     },
 

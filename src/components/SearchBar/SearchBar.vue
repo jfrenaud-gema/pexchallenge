@@ -61,7 +61,6 @@ import {
 import { SearchIcon } from "@heroicons/vue/outline";
 import FilterBySerie from "../FilterBySerie/FilterBySerie.vue";
 import Sort from "../Sort/Sort.vue";
-import { SortBy, SortOrder } from "@/model";
 
 export default defineComponent({
   name: "PexSearchBar",
@@ -122,8 +121,8 @@ export default defineComponent({
       this.serie = serie;
     },
 
-    onSortByChanged(sortBy: SortDataBy) {
-      this.sortBy = sortBy;
+    onSortByChanged(sortBy: SelectElement) {
+      this.sortBy = sortBy.key;
     },
 
     onSortOrderChanged(ascending: boolean) {

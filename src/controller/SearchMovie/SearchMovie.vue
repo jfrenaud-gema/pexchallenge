@@ -1,5 +1,5 @@
 <template>
-  <div class="container mx-auto flex flex-col gap-4">
+  <div class="container mx-auto flex flex-col gap-4 py-8">
     <SearchBar :genres="genres" @on-search="onSearch" />
     <MovieCardRow :movies="movies" />
   </div>
