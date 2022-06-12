@@ -1,6 +1,14 @@
 <template>
-  <div class="flex flex-col gap-4">
-    <div class="flex flex-col md:flex-row gap-4 desktop:items-end">
+  <form
+    class="flex flex-col gap-4"
+    @submit="
+      (e) => {
+        e.preventDefault();
+        search();
+      }
+    "
+  >
+    <div class="flex flex-col md:flex-row gap-4 xl:items-end">
       <div class="md:w-48">
         <Select
           :elements="searchOptions"
@@ -44,7 +52,7 @@
         @on-sort-order-changed="onSortOrderChanged"
       />
     </div>
-  </div>
+  </form>
 </template>
 
 <script lang="ts">
