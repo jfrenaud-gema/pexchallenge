@@ -1,5 +1,5 @@
 import { SearchMovieRequest } from "./SearchMovieRequest";
-import { SearchMovieResponse } from "./SearchMovieResponse";
+import { GenreResponse, SearchMovieResponse } from "./SearchMovieResponse";
 
 const allMovies: SearchMovieResponse = [
   {
@@ -57,6 +57,9 @@ const allMovies: SearchMovieResponse = [
 ];
 
 const searchMovieApiMock = {
+  getAllGenres(): Promise<GenreResponse> {
+    return Promise.resolve(allMovies.flatMap((movie) => movie.genre));
+  },
   searchMovies(request: SearchMovieRequest): Promise<SearchMovieResponse> {
     console.log(JSON.stringify(request));
 

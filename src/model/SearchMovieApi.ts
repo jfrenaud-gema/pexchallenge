@@ -1,8 +1,11 @@
 import searchMovieApiMock from "./SearchMovieApiMock";
 import { SearchMovieRequest } from "./SearchMovieRequest";
-import { SearchMovieResponse } from "./SearchMovieResponse";
+import { GenreResponse, SearchMovieResponse } from "./SearchMovieResponse";
 
 const searchMovieApi = {
+  getAllGenres(): Promise<GenreResponse> {
+    return searchMovieApiMock.getAllGenres();
+  },
   searchMovies(request: SearchMovieRequest): Promise<SearchMovieResponse> {
     return searchMovieApiMock.searchMovies(request);
   },

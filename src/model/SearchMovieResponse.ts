@@ -18,3 +18,5 @@ export interface Movie {
 }
 
 export type SearchMovieResponse = Movie[];
+
+export type GenreResponse = Genre[];

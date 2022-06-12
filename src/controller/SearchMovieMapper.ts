@@ -1,5 +1,6 @@
 import {
   FilterData,
+  GenreData,
   SearchDataOption,
   SortData,
   SortDataBy,
@@ -7,6 +8,7 @@ import {
 import {
   Filter,
   FilterBy,
+  GenreResponse,
   SearchOption,
   Sort,
   SortBy,
@@ -14,6 +16,10 @@ import {
 } from "../model";
 
 const searchMovieMapper = {
+  toGenreData: (genres: GenreResponse): GenreData[] => {
+    return genres.map((genre) => genre.title);
+  },
+
   toSearchOption: (searchDataOption: SearchDataOption): SearchOption => {
     if (searchDataOption === SearchDataOption.ACTORS) {
       return SearchOption.ACTORS;

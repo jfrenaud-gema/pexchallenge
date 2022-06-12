@@ -9,6 +9,14 @@ import {
 import { SearchMovieResponse } from "@/model/SearchMovieResponse";
 
 describe("SearchMovieApiMock", () => {
+  describe("getAllGenres", () => {
+    it("should return all genres", async () => {
+      const genres = await searchMovieApiMock.getAllGenres();
+
+      expect(genres.length).toBe(4);
+    });
+  });
+
   describe("searchMovies", () => {
     let movies: SearchMovieResponse;
     const request: SearchMovieRequest = {

@@ -1,6 +1,6 @@
 <template>
   <div class="container mx-auto">
-    <SearchBar @on-search="onSearch" />
+    <SearchBar :genres="genres" @on-search="onSearch" />
   </div>
 </template>
 
@@ -8,7 +8,10 @@
 import { SearchMovieRequest } from "../../model";
 import { defineComponent } from "vue";
 import SearchBar from "../../components/SearchBar/SearchBar.vue";
-import { SearchData } from "../../components/SearchBar/SearchBar.types";
+import {
+  GenreData,
+  SearchData,
+} from "../../components/SearchBar/SearchBar.types";
 import searchMovieMapper from "../SearchMovieMapper";
 import searchMovieApi from "../../model/SearchMovieApi";
 
@@ -19,13 +22,28 @@ export default defineComponent({
     SearchBar,
   },
 
+  data() {
+    const genres: GenreData[] = [];
+    return {
+      genres,
+    };
+  },
+
+  async mounted() {
+    const allGenres = await searchMovieApi.getAllGenres();
+
+    this.genres = searchMovieMapper.toGenreData(allGenres);
+  },
+
   methods: {
     async onSearch(searchData: SearchData) {
       const request: SearchMovieRequest = {
         searchTerm: searchData.searchTerm,
         searchOption: searchMovieMapper.toSearchOption(searchData.option),
         sort: searchMovieMapper.toSort(searchData.sort),
-        filters: [],
+        filters: searchData.filter
+          ? searchMovieMapper.toFilters(searchData.filter)
+          : [],
       };
 
       const response = await searchMovieApi.searchMovies(request);

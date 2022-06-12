@@ -6,6 +6,19 @@ import searchMovieMapper from "@/controller/SearchMovieMapper";
 import { FilterBy, SearchOption, SortBy, SortOrder } from "@/model";
 
 describe("SearchMovieMapper", () => {
+  describe("toGenreDate", () => {
+    it("should select the title", () => {
+      const genreData = searchMovieMapper.toGenreData([
+        { id: 1, title: "Comedy" },
+        { id: 2, title: "Western" },
+      ]);
+
+      expect(genreData.length).toBe(2);
+      expect(genreData[0]).toBe("Comedy");
+      expect(genreData[1]).toBe("Western");
+    });
+  });
+
   describe("toSearchOption", () => {
     it("should convert actors", () => {
       const searchOption = searchMovieMapper.toSearchOption(
