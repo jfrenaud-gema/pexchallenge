@@ -38,6 +38,10 @@
     <div class="flex flex-col md:flex-row md:gap-10 gap-3">
       <FilterByGenre :genres="genres" @on-checked="onFilterByGenreChanged" />
       <FilterBySerie @on-change="onFilterBySerieChanged" />
+      <Sort
+        @on-sort-by-changed="onSortByChanged"
+        @on-sort-order-changed="onSortOrderChanged"
+      />
     </div>
   </div>
 </template>
@@ -56,6 +60,8 @@ import {
 } from "./SearchBar.types";
 import { SearchIcon } from "@heroicons/vue/outline";
 import FilterBySerie from "../FilterBySerie/FilterBySerie.vue";
+import Sort from "../Sort/Sort.vue";
+import { SortBy, SortOrder } from "@/model";
 
 export default defineComponent({
   name: "PexSearchBar",
@@ -65,6 +71,7 @@ export default defineComponent({
     SearchIcon,
     FilterByGenre,
     FilterBySerie,
+    Sort,
   },
 
   props: {
@@ -91,6 +98,8 @@ export default defineComponent({
       selectedGenres,
       filterBySerie: false,
       serie: false,
+      sortBy: SortDataBy.TITLE as SortDataBy,
+      sortAscending: true,
     };
   },
 
@@ -113,6 +122,14 @@ export default defineComponent({
       this.serie = serie;
     },
 
+    onSortByChanged(sortBy: SortDataBy) {
+      this.sortBy = sortBy;
+    },
+
+    onSortOrderChanged(ascending: boolean) {
+      this.sortAscending = ascending;
+    },
+
     search() {
       let filter: FilterData | undefined =
         this.selectedGenres.length || this.filterBySerie ? {} : undefined;
@@ -132,8 +149,8 @@ export default defineComponent({
         searchTerm: this.searchTerm,
         filter,
         sort: {
-          by: SortDataBy.TITLE,
-          ascending: true,
+          by: this.sortBy,
+          ascending: this.sortAscending,
         },
       };
 
