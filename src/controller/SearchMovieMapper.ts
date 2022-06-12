@@ -45,10 +45,10 @@ const searchMovieMapper = {
       }));
     }
 
-    if (filterData.serie) {
+    if (filterData.serie !== undefined) {
       filters.push({
         by: FilterBy.SERIE,
-        value: filterData.serie.value,
+        value: filterData.serie,
       });
     }
 

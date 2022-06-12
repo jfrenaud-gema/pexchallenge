@@ -5,9 +5,7 @@ export enum SearchDataOption {
 
 export type GenreData = string;
 
-export interface SerieData {
-  value: boolean;
-}
+export type SerieData = boolean;
 
 export interface FilterData {
   genres?: GenreData[];

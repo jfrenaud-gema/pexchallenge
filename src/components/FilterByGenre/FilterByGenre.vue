@@ -1,6 +1,6 @@
 <template>
   <div class="flex flex-col gap-2">
-    <p class="text-gray-900">Filter by genre</p>
+    <p class="text-gray-900">Filter by genre:</p>
     <div class="flex flex-col gap-1">
       <Checkbox
         v-for="genre in genres"
@@ -32,10 +32,6 @@ export default defineComponent({
   },
 
   emits: ["onChecked"],
-
-  data() {
-    return {};
-  },
 
   methods: {
     onChecked(genre: string, checked: boolean) {

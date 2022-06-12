@@ -35,8 +35,9 @@
         </button>
       </div>
     </div>
-    <div>
+    <div class="flex flex-col md:flex-row md:gap-10 gap-3">
       <FilterByGenre :genres="genres" @on-checked="onFilterByGenreChanged" />
+      <FilterBySerie @on-change="onFilterBySerieChanged" />
     </div>
   </div>
 </template>
@@ -54,6 +55,7 @@ import {
   SortDataBy,
 } from "./SearchBar.types";
 import { SearchIcon } from "@heroicons/vue/outline";
+import FilterBySerie from "../FilterBySerie/FilterBySerie.vue";
 
 export default defineComponent({
   name: "PexSearchBar",
@@ -62,6 +64,7 @@ export default defineComponent({
     Select,
     SearchIcon,
     FilterByGenre,
+    FilterBySerie,
   },
 
   props: {
@@ -86,6 +89,8 @@ export default defineComponent({
       searchOptionSelected,
       searchTerm: "",
       selectedGenres,
+      filterBySerie: false,
+      serie: false,
     };
   },
 
@@ -103,12 +108,23 @@ export default defineComponent({
       }
     },
 
+    onFilterBySerieChanged(filterBySerie: boolean, serie: boolean) {
+      this.filterBySerie = filterBySerie;
+      this.serie = serie;
+    },
+
     search() {
-      let filter: FilterData | undefined = undefined;
-      if (this.selectedGenres.length) {
-        filter = {
-          genres: this.selectedGenres,
-        };
+      let filter: FilterData | undefined =
+        this.selectedGenres.length || this.filterBySerie ? {} : undefined;
+
+      if (filter) {
+        if (this.selectedGenres.length) {
+          filter.genres = this.selectedGenres;
+        }
+
+        if (this.filterBySerie) {
+          filter.serie = this.serie;
+        }
       }
 
       const searchData: SearchData = {

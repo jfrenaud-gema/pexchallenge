@@ -102,9 +102,7 @@ describe("SearchMovieMapper", () => {
 
     it("should convert serie true", () => {
       const filters = searchMovieMapper.toFilters({
-        serie: {
-          value: true,
-        },
+        serie: true,
       });
 
       expect(filters.length).toBe(1);
@@ -114,9 +112,7 @@ describe("SearchMovieMapper", () => {
 
     it("should convert serie false", () => {
       const filters = searchMovieMapper.toFilters({
-        serie: {
-          value: false,
-        },
+        serie: false,
       });
 
       expect(filters.length).toBe(1);
@@ -127,9 +123,7 @@ describe("SearchMovieMapper", () => {
     it("should convert genres and serie", () => {
       const filters = searchMovieMapper.toFilters({
         genres: ["Comedy", "Western"],
-        serie: {
-          value: false,
-        },
+        serie: false,
       });
 
       expect(filters.length).toBe(3);
