@@ -61,7 +61,7 @@ const searchMovieApiMock = {
     return Promise.resolve(allMovies.flatMap((movie) => movie.genre));
   },
   searchMovies(request: SearchMovieRequest): Promise<SearchMovieResponse> {
-    console.log(JSON.stringify(request));
+    console.log(JSON.stringify(request, null, 2));
 
     let response: SearchMovieResponse = allMovies.map((movie) => ({
       ...movie,
